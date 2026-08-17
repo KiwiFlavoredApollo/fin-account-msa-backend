@@ -1,0 +1,42 @@
+@startuml
+
+entity ACCOUNT {
+    * account_id : BIGINT <<PK>>
+    --
+    account_number : VARCHAR
+    owner_name : VARCHAR
+    password : VARCHAR
+    balance : DECIMAL
+    status : VARCHAR
+}
+
+entity TRANSACTION {
+    * transaction_id : BIGINT <<PK>>
+    --
+    from_account_id : BIGINT
+    to_account_id : BIGINT
+    amount : DECIMAL
+    type : VARCHAR
+    status : VARCHAR
+    created_at : DATETIME
+}
+
+entity NOTIFICATION_LOG {
+    * id : BIGINT <<PK>>
+    --
+    * transaction_id : VARCHAR <<UK>>
+    * account_id : VARCHAR
+    * user_id : VARCHAR
+    * transaction_type : VARCHAR
+    * amount : BIGINT
+    * message : VARCHAR(500)
+    * status : VARCHAR
+    from_account_id : VARCHAR
+    to_account_id : VARCHAR
+    * received_at : DATETIME
+}
+
+ACCOUNT -[hidden]-> TRANSACTION
+TRANSACTION -[hidden]-> NOTIFICATION_LOG
+
+@enduml
