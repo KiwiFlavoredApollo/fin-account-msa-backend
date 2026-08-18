@@ -4,20 +4,27 @@ server:
 spring:
   application:
     name: notification-service
+
   config:
     import: optional:configserver:${CONFIG_SERVER_URI:http://config-service:8888}
+
   datasource:
-    url: jdbc:h2:mem:notificationdb
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
+    url: jdbc:mariadb://localhost:3306/appdb
+    username: appuser
+    password: apppassword
+    driver-class-name: org.mariadb.jdbc.Driver
+
   jpa:
     hibernate:
-      ddl-auto: update
-    show-sql: true
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDBDialect
+
   h2:
     console:
       enabled: true
+
   kafka:
     bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka:9092}
     consumer:
