@@ -1,4 +1,12 @@
 services:
+  frontend:
+    image: uniquecolor/miniproject-frontend:1.0.0
+    container_name: frontend
+    ports:
+      - 80:80
+    environment:
+      - VITE_API_BASE_URL=http://gateway-service:8080
+
   gateway-service:
     image: uniquecolor/gateway-service:1.0.0
     build: ./gateway
@@ -7,6 +15,7 @@ services:
       - "8080:8080"
     environment:
       - eureka.client.service-url.defaultZone=http://eureka-service:8761/eureka/
+      - CORS_ALLOWED_ORIGIN=http://frontend:80
 
   eureka-service:
     image: uniquecolor/eureka-service:1.0.0
@@ -54,6 +63,7 @@ services:
       - "8085:8085"
     environment:
       spring.datasource.url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1; # 임시조치
+      spring.h2.console.settings.web-allow-others: "true" # 임시조치
       eureka.client.service-url.defaultZone: http://eureka-service:8761/eureka/
       KAFKA_BOOTSTRAP_SERVERS: kafka:9092
       SCHEMA_REGISTRY_URL: http://schema-registry:8081
