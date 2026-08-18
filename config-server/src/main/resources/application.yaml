@@ -9,6 +9,4 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/wnsdn-tech/fin-account-msa-backend.git
-          search-paths:
-            - config-repo
+          uri: https://github.com/wnsdn-tech/fin-account-config-repo.git
