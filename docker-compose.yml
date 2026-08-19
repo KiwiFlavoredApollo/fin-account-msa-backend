@@ -1,6 +1,6 @@
 services:
   frontend:
-    image: uniquecolor/miniproject-frontend:1.0.0
+    image: uniquecolor/miniproject-frontend:1.0.1
     container_name: frontend
     ports:
       - 80:80
