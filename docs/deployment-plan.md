@@ -2,9 +2,9 @@
 
 ## 1. 배포 개요
 
-본 프로젝트는 **Spring Boot 기반 MSA(Microservices Architecture)** 구조로 개발되었으며, Docker Compose를 이용하여 각 서비스를 컨테이너 단위로 배포한다.
+본 프로젝트는 Spring Boot 기반 MSA(Microservices Architecture) 구조로 개발되었으며, Docker Compose를 이용하여 각 서비스를 컨테이너 단위로 배포한다.
 
-배포 환경은 AWS EC2 서버를 기반으로 구성하며, **Jenkins를 CI/CD 도구로 사용**하여 소스 코드 빌드, Docker 이미지 생성 및 Docker Registry 업로드를 자동화한다.
+배포 환경은 AWS EC2 서버를 기반으로 구성하며, Jenkins를 CI/CD 도구로 사용하여 소스 코드 빌드, Docker 이미지 생성 및 Docker Registry 업로드를 자동화한다.
 
 배포 대상 서비스는 다음과 같다.
 
@@ -141,7 +141,7 @@ mariadb:latest
 
 ## 5. CI/CD 구성
 
-본 프로젝트에서는 **Jenkins를 CI/CD 서버로 사용한다.**
+본 프로젝트에서는 Jenkins를 CI/CD 서버로 사용한다.
 
 전체적인 CI/CD 과정은 다음과 같다.
 
@@ -497,7 +497,7 @@ docker compose logs <service-name>
 
 ## 15. 롤백 계획
 
-새로운 버전의 배포 후 서비스 장애가 발생하면 **이전에 검증된 Docker Image 버전으로 롤백**한다.
+새로운 버전의 배포 후 서비스 장애가 발생하면 이전에 검증된 Docker Image 버전으로 롤백한다.
 
 예를 들어 기존 버전이 다음과 같다고 가정한다.
 
@@ -591,4 +591,4 @@ Jenkins
                        롤백
 ```
 
-이를 통해 **Jenkins를 중심으로 빌드 → 테스트 → Docker Image 생성 → Docker Hub Push → AWS EC2 배포 → 검증 → 장애 발생 시 롤백**까지의 전체 배포 과정을 자동화한다.
+이를 통해 Jenkins를 중심으로 빌드 → 테스트 → Docker Image 생성 → Docker Hub Push → AWS EC2 배포 → 검증 → 장애 발생 시 롤백까지의 전체 배포 과정을 자동화한다.
