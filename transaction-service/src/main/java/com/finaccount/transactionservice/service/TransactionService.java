@@ -142,7 +142,7 @@ public class TransactionService {
                 }
         );
 
-        if (!response.getStatus().equals(AccountStatus.ACTIVE)) {
+        if (!isActiveAccount(response)) {
             throw new IllegalStateException();
         }
 
@@ -175,6 +175,10 @@ public class TransactionService {
             throw new IllegalStateException();
         }
 
+        if (!isEnoughBalance(response, transaction)) {
+            throw new IllegalStateException();
+        }
+
         AccountRequest.AccountRequestBuilder builder = AccountRequest.builder();
         builder.balance(response.getBalance() - amount);
         AccountRequest request = builder.build();
@@ -185,6 +189,14 @@ public class TransactionService {
                     throw new IllegalStateException();
                 }
         );
+    }
+
+    private boolean isActiveAccount(AccountResponse account) {
+        return account.getStatus().equals(AccountStatus.ACTIVE);
+    }
+
+    private boolean isEnoughBalance(AccountResponse account, TransactionDto transaction) {
+        return account.getBalance() >= transaction.getAmount();
     }
 
     // TODO
