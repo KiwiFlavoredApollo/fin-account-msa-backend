@@ -8,6 +8,7 @@ import com.finaccount.transactionservice.jpa.TransactionEntity;
 import com.finaccount.transactionservice.jpa.TransactionRepository;
 import com.finaccount.transactionservice.vo.AccountRequest;
 import com.finaccount.transactionservice.vo.AccountResponse;
+import com.finaccount.transactionservice.vo.AccountStatus;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.modelmapper.ModelMapper;
@@ -141,6 +142,10 @@ public class TransactionService {
                 }
         );
 
+        if (!response.getStatus().equals(AccountStatus.ACTIVE)) {
+            throw new IllegalStateException();
+        }
+
         AccountRequest.AccountRequestBuilder builder = AccountRequest.builder();
         builder.balance(response.getBalance() + amount);
         AccountRequest request = builder.build();
@@ -165,6 +170,10 @@ public class TransactionService {
                     throw new IllegalStateException();
                 }
         );
+
+        if (!response.getStatus().equals(AccountStatus.ACTIVE)) {
+            throw new IllegalStateException();
+        }
 
         AccountRequest.AccountRequestBuilder builder = AccountRequest.builder();
         builder.balance(response.getBalance() - amount);
