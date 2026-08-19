@@ -5,6 +5,9 @@ spring:
   application:
     name: gateway
 
+cors:
+  allowed-origin: ${CORS_ALLOWED_ORIGIN:http://localhost:5173}
+
 eureka:
   client:
     service-url:
