@@ -38,7 +38,7 @@ services:
       - spring.datasource.url=jdbc:mariadb://mariadb-account-service:3306/appdb
 
   transaction-service:
-    image: uniquecolor/transaction-service:1.0.0
+    image: uniquecolor/transaction-service:1.0.1
     build: ./transaction-service
     container_name: transaction-service
     depends_on:
