@@ -53,7 +53,7 @@ services:
       - spring.datasource.url=jdbc:mariadb://mariadb-transaction-service:3306/appdb
 
   notification-service:
-    image: uniquecolor/notification-service:1.0.0
+    image: uniquecolor/notification-service:1.0.1
     build: ./notification-service
     container_name: notification-service
     depends_on:
