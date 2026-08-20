@@ -30,7 +30,7 @@ services:
     container_name: config-service
 
   account-service:
-    image: uniquecolor/account-service:1.0.0
+    image: uniquecolor/account-service:1.0.1
     build: ./account-service
     container_name: account-service
     environment:
